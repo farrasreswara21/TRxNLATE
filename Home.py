@@ -10,13 +10,13 @@ st.write("# Welcome to TRxNLATE! 💊")
 
 st.markdown(
     """
-    TRxNLATE is a Webapp that helps you read doctors' writings quickly and precisely.
+    ### TRxNLATE is a Webapp that helps you read doctor's writings quickly and precisely.
     - Choose a way to read doctor's writings
     - Input your image!
-    - Wait a second 
+    - Wait a second... 
     - Voila, we read them for you!
 """
 )
 st.write('## Are you ready?')
 if st.button('Ready!'):
-    st.write("Let's goo")
+    st.write("Let's goo!!! 👍")

@@ -4,12 +4,13 @@ import numpy as np
 import cv2 
 from PIL import Image
 import requests
+import time
 
 st.set_page_config(page_title="Live Camera", page_icon="📷")
 st.markdown("# Live Camera 📷")
 st.write(
     """
-Put your writing towards the camera, we will read it for you!"""
+### Put your writing toward the camera, I'll read it for you!"""
 )
 picture = st.camera_input("Take a picture!")
     
@@ -30,6 +31,14 @@ if picture is not None:
     c1.header('Predicted Output :')
     c2.header(r.text.split('"')[-2])
     
+    time.sleep(1.5)
+    st.write("##")
+    st.write("##")
     
-    # c2.header('Predicted Output :')
-    # c2.write(model.predictDrug(cv2_img))
+    rate = st.selectbox('What do you think about the predicted results?',
+                    ('','Great!😁', 'Nice try🥲'))
+    
+    if rate == 'Great!😁':
+        st.write('Thankyou!')
+    elif rate == 'Nice try🥲': 
+        st.write('Sorry...')
