@@ -34,7 +34,7 @@ if upload is not None:
     c2.header(r.text.split('"')[-2])
     time.sleep(1.5)
     st.write("##")
-    st.write("##")
+    st.divider()
     
     rate = st.selectbox('What do you think about the predicted results?',
                     ('','Great!😁', 'Nice try🥲'))

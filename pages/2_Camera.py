@@ -33,7 +33,7 @@ if picture is not None:
     
     time.sleep(1.5)
     st.write("##")
-    st.write("##")
+    st.divider()
     
     rate = st.selectbox('What do you think about the predicted results?',
                     ('','Great!😁', 'Nice try🥲'))
