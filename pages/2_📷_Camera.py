@@ -48,11 +48,6 @@ if picture is not None:
     image = img_array
     success, encoded_image = cv2.imencode('.png', image)
     content2 = encoded_image.tobytes()
-
-    # di save
-    blob = bucket.blob(f'data_unlabelled/YES/{output}/{random.randrange(000000, 999999)}.png')
-    blob.upload_from_string(content2)
-
     
     #Feedback
     time.sleep(1.5)
@@ -64,5 +59,11 @@ if picture is not None:
     
     if rate == 'Great!😁':
         st.write('Thankyou!')
+        # di save
+        blob = bucket.blob(f'data_unlabelled/YES/{output}/{random.randrange(000000, 999999)}.png')
+        blob.upload_from_string(content2)
     elif rate == 'Nice try🥲': 
         st.write('Sorry...')
+        # di save
+        blob = bucket.blob(f'data_unlabelled/YES/{output}/{random.randrange(000000, 999999)}.png')
+        blob.upload_from_string(content2)
