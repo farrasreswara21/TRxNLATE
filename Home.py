@@ -10,7 +10,7 @@ st.write("# Welcome to TRxNLATE! 💊")
 
 st.markdown(
     """
-    ### TRxNLATE is a Webapp that helps you read doctor's writings quickly and precisely.
+    ### TRxNSLATE is a Webapp that helps you read doctor's writings quickly and precisely.
     - Choose a way to read doctor's writings
     - Input your image!
     - Wait a second... 
