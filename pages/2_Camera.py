@@ -12,7 +12,7 @@ import os
 from google.cloud import storage
 from tempfile import TemporaryFile
 
-st.set_page_config(page_title="Live Camera", page_icon="📷")
+st.set_page_config(page_title="Live Camera 📸", page_icon="📷")
 st.markdown("# Live Camera 📷")
 st.write(
     """

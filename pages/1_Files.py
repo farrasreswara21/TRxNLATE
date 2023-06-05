@@ -12,7 +12,7 @@ import os
 from google.cloud import storage
 from tempfile import TemporaryFile
 
-st.set_page_config(page_title="Upload Files", page_icon="📂")
+st.set_page_config(page_title="Upload Files 📂", page_icon="📂")
 
 st.markdown("# Upload Files 📂")
 st.write(
