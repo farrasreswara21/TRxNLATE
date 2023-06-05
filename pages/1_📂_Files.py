@@ -47,11 +47,13 @@ if upload is not None:
 
     bucket = client.get_bucket('doctorrx_pipeline_bucket')
     image = cv_image
-    with TemporaryFile() as gcs_image:
-        image.tofile(gcs_image)
-        gcs_image.seek(0)
-        blob = bucket.blob(f'data_unlabelled/YES/{output}/{random.randrange(000000, 999999)}.png')
-        blob.upload_from_file(gcs_image)
+
+    success, encoded_image = cv2.imencode('.png', image)
+    content2 = encoded_image.tobytes()
+
+    # di save
+    blob = bucket.blob(f'data_unlabelled/YES/{output}/{random.randrange(000000, 999999)}.png')
+    blob.upload_from_string(content2)
     
     #Feedback
     time.sleep(1.5)
