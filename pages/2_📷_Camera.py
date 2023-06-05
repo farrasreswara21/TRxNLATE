@@ -45,7 +45,7 @@ if picture is not None:
     client = storage.Client()
 
     bucket = client.get_bucket('doctorrx_pipeline_bucket')
-    image = img_array
+    image = cv_image_gray
     success, encoded_image = cv2.imencode('.png', image)
     content2 = encoded_image.tobytes()
     
