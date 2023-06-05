@@ -3,8 +3,14 @@ import streamlit as st
 import numpy as np
 import cv2 
 from PIL import Image
+
+import random
 import requests
 import time
+import os
+
+from google.cloud import storage
+from tempfile import TemporaryFile
 
 st.set_page_config(page_title="Live Camera", page_icon="📷")
 st.markdown("# Live Camera 📷")
@@ -19,6 +25,7 @@ if picture is not None:
     img = Image.open(picture)
     img_array = np.array(img)
     cv_image_gray = cv2.cvtColor(img_array, cv2.COLOR_BGR2GRAY)
+    
     # prediction on model
     url = 'https://trxnslate-uv7qigoz4a-et.a.run.app/prediction'
     data = cv_image_gray.tolist()
@@ -28,9 +35,25 @@ if picture is not None:
     
     r = requests.post(url=url, json=im)
     
+    output = r.text.split('"')[-2]
     c1.header('Predicted Output :')
-    c2.header(r.text.split('"')[-2])
+    c2.header(output)
     
+    # Upload image
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'doctorrx-387716-cdaefd627b4a.json'
+
+    client = storage.Client()
+
+    bucket = client.get_bucket('doctorrx_pipeline_bucket')
+    image = img_array
+    with TemporaryFile() as gcs_image:
+        image.tofile(gcs_image)
+        gcs_image.seek(0)
+        blob = bucket.blob(f'data_unlabelled/YES/{output}/{random.randrange(000000, 999999)}.png')
+        blob.upload_from_file(gcs_image)
+
+    
+    #Feedback
     time.sleep(1.5)
     st.write("##")
     st.divider()

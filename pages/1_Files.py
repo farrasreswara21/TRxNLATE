@@ -3,8 +3,14 @@ import streamlit as st
 import numpy as np
 import cv2 
 from PIL import Image
+
+import random
 import requests
 import time
+import os
+
+from google.cloud import storage
+from tempfile import TemporaryFile
 
 st.set_page_config(page_title="Upload Files", page_icon="📂")
 
@@ -30,8 +36,24 @@ if upload is not None:
     }
     r = requests.post(url=url, json=im)
     
+    output = r.text.split('"')[-2]
     c2.header('Predicted Output')
-    c2.header(r.text.split('"')[-2])
+    c2.header(output)
+    
+    # Upload image
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'doctorrx-387716-cdaefd627b4a.json'
+
+    client = storage.Client()
+
+    bucket = client.get_bucket('doctorrx_pipeline_bucket')
+    image = cv_image
+    with TemporaryFile() as gcs_image:
+        image.tofile(gcs_image)
+        gcs_image.seek(0)
+        blob = bucket.blob(f'data_unlabelled/YES/{output}/{random.randrange(000000, 999999)}.png')
+        blob.upload_from_file(gcs_image)
+    
+    #Feedback
     time.sleep(1.5)
     st.write("##")
     st.divider()
