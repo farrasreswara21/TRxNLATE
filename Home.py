@@ -5,7 +5,7 @@ st.set_page_config(
     page_icon="💊",
 )
 
-st.write("# Welcome to TRxNLATE! 💊")
+st.write("# Welcome to TRxNSLATE! 💊")
 
 
 st.markdown(
