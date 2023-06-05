@@ -1,2 +1,7 @@
-[theme]
-base="light"
+[theme] # You have to add this line
+
+primaryColor = '#FF8C02' # Bright Orange
+
+backgroundColor = '#00325B' # Dark Blue
+
+secondaryBackgroundColor = '#55B2FF' # Lighter Blue
