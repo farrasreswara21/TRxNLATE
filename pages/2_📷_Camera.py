@@ -65,5 +65,5 @@ if picture is not None:
     elif rate == 'Nice try🥲': 
         st.write('Sorry...')
         # di save
-        blob = bucket.blob(f'data_unlabelled/YES/{output}/{random.randrange(000000, 999999)}.png')
+        blob = bucket.blob(f'data_unlabelled/NO/{output}/{random.randrange(000000, 999999)}.png')
         blob.upload_from_string(content2)
